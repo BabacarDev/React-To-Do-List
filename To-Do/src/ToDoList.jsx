@@ -10,16 +10,30 @@ function ToDoList(){
        setNewTask(e.target.value);
      }
      function AddTask(){
-
+      if(newTask.trim() !== ""){
+        setTasks(t => [...t, newTask])
+        setNewTask("")
+      }
      }
      function DeleteTask(index){
-
+         const updatedTask = tasks.filter((_, i) => i !== index);
+         setTasks(updatedTask);
      }
      function moveTaskUp(index){
-
+        if(index > 0){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index - 1]]
+            =   [updatedTasks[index - 1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
      }
      function moveTaskDown(index){
-
+        if(index < tasks.length){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index + 1]]
+            =   [updatedTasks[index +  1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
      }
 
 
